@@ -1,0 +1,12 @@
+#!/bin/bash -xe
+echo $IMAGE_NAME
+
+if [ $IMAGE_NAME ]; then
+    VERSION="$(echo $IMAGE_NAME | cut -d ":"  -f2)"
+else
+    VERSION=1.0
+fi
+
+docker build \
+        --build-arg "version=$VERSION" \
+        -t $IMAGE_NAME .
